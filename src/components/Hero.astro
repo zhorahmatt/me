@@ -26,23 +26,26 @@ const { locale } = Astro.props;
       </div>
     </div>
     <h1
+      id="hero-heading"
       class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[64px] leading-[1.1] tracking-tight reveal m-0 text-ink"
+      data-line1={locale === "en" ? "Welcome to my Space." : "karya Rahmat."}
+      data-line2-prefix={locale === "en" ? "Crafting " : "Rumah dari "}
     >
-      <span class="whitespace-nowrap"
-        >{locale === "en" ? "The home for" : "Rumah dari"}</span
-      >
+      <span class="whitespace-nowrap">
+        <span id="typewriter-text"></span><span id="cursor-1" class="text-border ml-1 animate-pulse font-sans font-light">|</span>
+      </span>
       <br />
-      <span class="whitespace-nowrap"
-        >{locale === "en" ? "Rahmat's creations." : "karya Rahmat."}<span
-          class="text-border ml-1 animate-pulse font-sans font-light">|</span
-        ></span
-      >
+      <span class="whitespace-nowrap">
+        <span id="static-text"></span><span id="rotating-text" class="inline-block"></span><span id="cursor-2" class="text-border ml-1 font-sans font-light hidden">|</span>
+      </span>
     </h1>
   </div>
 
   <!-- Intro text -->
   <div class="max-w-[768px] space-y-5 mb-10 reveal reveal-delay-2">
-    <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed font-medium">
+    <p
+      class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed font-medium"
+    >
       {t("hero.intro", locale)}
     </p>
     <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed">
@@ -66,3 +69,81 @@ const { locale } = Astro.props;
     </a>
   </div>
 </section>
+
+<script>
+  const heading = document.getElementById("hero-heading");
+  const typewriterEl = document.getElementById("typewriter-text");
+  const staticEl = document.getElementById("static-text");
+  const rotatingEl = document.getElementById("rotating-text");
+  const cursor1 = document.getElementById("cursor-1");
+  const cursor2 = document.getElementById("cursor-2");
+
+  const line1Text = heading?.dataset.line1 || "Welcome to my Space.";
+  const line2Prefix = heading?.dataset.line2Prefix || "Crafting ";
+  const phrases = ["Reliable Code", "Marketing Growth", "with Intent"];
+  let currentIndex = 0;
+  let isAnimating = false;
+
+  function typeTextGeneric(el: HTMLElement | null, text: string, speed: number, callback?: () => void) {
+    if (!el) return;
+    let idx = 0;
+    function typeNext() {
+      if (idx <= text.length) {
+        el.textContent = text.slice(0, idx);
+        idx++;
+        setTimeout(typeNext, speed);
+      } else if (callback) {
+        callback();
+      }
+    }
+    typeNext();
+  }
+
+  function eraseTextGeneric(el: HTMLElement | null, speed: number, callback: () => void) {
+    if (!el) return;
+    const current = el.textContent || "";
+    if (current.length === 0) {
+      callback();
+      return;
+    }
+    el.textContent = current.slice(0, -1);
+    setTimeout(() => eraseTextGeneric(el, speed, callback), speed);
+  }
+
+  // ── Sequential Animation orchestrator ───
+  setTimeout(() => {
+    // 1. Type line 1
+    typeTextGeneric(typewriterEl, line1Text, 70, () => {
+      // 2. Hide cursor 1, show cursor 2
+      if (cursor1) {
+        cursor1.classList.add("hidden");
+        cursor1.classList.remove("animate-pulse");
+      }
+      if (cursor2) {
+        cursor2.classList.remove("hidden");
+        cursor2.classList.add("animate-pulse");
+      }
+      
+      // 3. Type static prefix on line 2
+      typeTextGeneric(staticEl, line2Prefix, 70, () => {
+        // 4. Type the first rotating phrase
+        typeTextGeneric(rotatingEl, phrases[0], 70, () => {
+          // 5. Start the rotating loop
+          setInterval(rotatePhrase, 3000);
+        });
+      });
+    });
+  }, 600);
+
+  function rotatePhrase() {
+    if (!rotatingEl || isAnimating) return;
+    isAnimating = true;
+
+    eraseTextGeneric(rotatingEl, 40, () => {
+      currentIndex = (currentIndex + 1) % phrases.length;
+      typeTextGeneric(rotatingEl, phrases[currentIndex], 70, () => {
+        isAnimating = false;
+      });
+    });
+  }
+</script>
