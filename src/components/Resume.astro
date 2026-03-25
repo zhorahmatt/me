@@ -1,0 +1,169 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const experience = [
+  {
+    role: 'Full-Stack Developer',
+    company: 'Thuuba Digital',
+    period: '2022 — Present',
+    link: '#',
+  },
+  {
+    role: 'Web Developer',
+    company: locale === 'en' ? 'Previous Company' : 'Perusahaan Sebelumnya',
+    period: '2020 — 2022',
+    link: null,
+  },
+];
+
+const education = [
+  {
+    degree: locale === 'en' ? 'Bachelor of Computer Science' : 'Sarjana Ilmu Komputer',
+    school: locale === 'en' ? 'University' : 'Universitas',
+    period: '2016 — 2020',
+  },
+];
+---
+
+<section class="resume section" id="resume">
+  <div class="container">
+    <!-- Experience -->
+    <div class="two-col resume__block">
+      <div class="two-col__label reveal">
+        <span class="label">{t('resume.experience', locale)}</span>
+      </div>
+      <div class="resume__rows">
+        {experience.map((item, i) => (
+          <div class={`resume-row reveal reveal-delay-${i + 1}`}>
+            <div class="resume-row__main">
+              <span class="resume-row__role">{item.role}</span>
+              <span class="resume-row__company font-mono text-muted">
+                {item.link ? (
+                  <a href={item.link} target="_blank" rel="noopener">{item.company} ↗</a>
+                ) : (
+                  item.company
+                )}
+              </span>
+            </div>
+            <span class="resume-row__period font-mono text-muted">{item.period}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="two-col resume__block" style="margin-top: var(--space-xl);">
+      <div class="two-col__label reveal">
+        <span class="label">{t('resume.education', locale)}</span>
+      </div>
+      <div class="resume__rows">
+        {education.map((item, i) => (
+          <div class={`resume-row reveal reveal-delay-${i + 1}`}>
+            <div class="resume-row__main">
+              <span class="resume-row__role">{item.degree}</span>
+              <span class="resume-row__company font-mono text-muted">{item.school}</span>
+            </div>
+            <span class="resume-row__period font-mono text-muted">{item.period}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Download -->
+    <div class="resume__download reveal" style="margin-top: var(--space-lg);">
+      <a href="/resume.pdf" class="resume__btn font-mono" target="_blank" rel="noopener">
+        {t('resume.download', locale)} ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .resume__rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resume-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--mist);
+    gap: var(--space-md);
+  }
+
+  .resume-row:first-child {
+    border-top: 1px solid var(--mist);
+  }
+
+  .resume-row__main {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+  }
+
+  .resume-row__role {
+    font-weight: var(--weight-medium);
+    font-size: var(--text-base);
+    color: var(--ink);
+  }
+
+  .resume-row__company {
+    font-size: var(--text-xs);
+  }
+
+  .resume-row__company a {
+    color: var(--clay);
+    text-decoration: none;
+  }
+
+  .resume-row__company a:hover {
+    opacity: 0.6;
+  }
+
+  .resume-row__period {
+    font-size: var(--text-xs);
+    flex-shrink: 0;
+  }
+
+  .resume__download {
+    text-align: right;
+  }
+
+  .resume__btn {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid var(--mist);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: var(--text-xs);
+    transition: all var(--duration) var(--ease-out);
+  }
+
+  .resume__btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .resume-row {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .resume-row__main {
+      flex-direction: column;
+      gap: 2px;
+    }
+  }
+</style>

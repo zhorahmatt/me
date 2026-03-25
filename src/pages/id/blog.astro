@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Blog from "../../components/Blog.astro";
+
+const locale = "id";
+---
+
+<BaseLayout
+  locale={locale}
+  title="Blog — Rahmat Hidayat"
+  description="Pemikiran tentang engineering, arsitektur, dan membangun hal yang bertahan lama."
+  activePage="blog"
+>
+  <Blog locale={locale} />
+</BaseLayout>

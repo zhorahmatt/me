@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Contact from "../../components/Contact.astro";
+
+const locale = "id";
+---
+
+<BaseLayout
+  locale={locale}
+  title="Kontak — Rahmat Hidayat"
+  description="Hubungi Rahmat Hidayat untuk pertanyaan proyek atau kolaborasi."
+  activePage="contact"
+>
+  <Contact locale={locale} />
+</BaseLayout>

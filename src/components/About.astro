@@ -1,0 +1,134 @@
+---
+import type { Locale } from '../i18n/utils';
+import { t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const experience = [
+  {
+    company: 'Thuuba Digital',
+    link: '#',
+    role: 'Full-Stack Developer',
+    period: '2022–Now',
+  },
+  {
+    company: locale === 'en' ? 'Previous Company' : 'Perusahaan Sebelumnya',
+    link: null,
+    role: 'Web Developer',
+    period: '2020–2022',
+  },
+];
+
+const education = [
+  {
+    institution: locale === 'en' ? 'University' : 'Universitas',
+    degree: locale === 'en' ? 'Bachelor of Computer Science' : 'S1 Ilmu Komputer',
+    period: '2016–2020',
+  },
+];
+
+const skills = ['Laravel', 'Vue.js', 'React', 'TypeScript', 'PostgreSQL', 'Redis', 'Docker', 'Tailwind CSS', 'Git', 'REST API'];
+---
+
+<section class="py-12 md:py-20">
+  <!-- Heading -->
+  <h1 class="font-serif text-hero mb-10 reveal">
+    {locale === 'en' ? 'About Me.' : 'Tentang Saya.'}
+  </h1>
+
+  <!-- Two-column: bio + avatar -->
+  <div class="grid md:grid-cols-[1fr_280px] gap-10 mb-16">
+    <div class="space-y-4 reveal reveal-delay-1">
+      <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed">
+        {t('about.p1', locale)}
+      </p>
+      <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed">
+        {t('about.p2', locale)}
+      </p>
+      <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed">
+        {t('about.p3', locale)}
+      </p>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <img
+        src="/avatar.png"
+        alt="Rahmat Hidayat"
+        class="w-full max-w-[280px] rounded-card-lg"
+      />
+    </div>
+  </div>
+
+  <!-- Experience -->
+  <div class="mb-12">
+    <h2 class="font-serif text-2xl mb-6 reveal">
+      {locale === 'en' ? 'Experience' : 'Pengalaman'}
+    </h2>
+    <div class="space-y-0 reveal reveal-delay-1">
+      {experience.map((item) => (
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between py-4 border-b border-border">
+          <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+            <span class="font-semibold text-ink">
+              {item.link ? (
+                <a href={item.link} target="_blank" rel="noopener" class="hover:opacity-70">
+                  {item.company} <span class="text-xs">↗</span>
+                </a>
+              ) : (
+                item.company
+              )}
+            </span>
+            <span class="text-sm text-ink-secondary">{item.role}</span>
+          </div>
+          <span class="text-sm text-ink-muted font-mono mt-1 sm:mt-0">{item.period}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Education -->
+  <div class="mb-12">
+    <h2 class="font-serif text-2xl mb-6 reveal">
+      {locale === 'en' ? 'Education' : 'Pendidikan'}
+    </h2>
+    <div class="space-y-0 reveal reveal-delay-1">
+      {education.map((item) => (
+        <div class="flex flex-col sm:flex-row sm:items-baseline justify-between py-4 border-b border-border">
+          <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+            <span class="font-semibold text-ink">{item.institution}</span>
+            <span class="text-sm text-ink-secondary">{item.degree}</span>
+          </div>
+          <span class="text-sm text-ink-muted font-mono mt-1 sm:mt-0">{item.period}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Skills -->
+  <div class="mb-12">
+    <h2 class="font-serif text-2xl mb-6 reveal">
+      {locale === 'en' ? 'Tech Stack' : 'Teknologi'}
+    </h2>
+    <div class="flex flex-wrap gap-2 reveal reveal-delay-1">
+      {skills.map((skill) => (
+        <span class="px-3 py-1.5 rounded-pill bg-paper-alt text-sm text-ink-secondary border border-border-light">
+          {skill}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- Download Resume -->
+  <div class="reveal reveal-delay-2">
+    <a href="/resume.pdf" target="_blank" rel="noopener" class="btn-primary">
+      {locale === 'en' ? 'Download Resume' : 'Unduh Resume'}
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+    </a>
+  </div>
+</section>

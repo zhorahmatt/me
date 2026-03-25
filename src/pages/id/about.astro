@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import About from "../../components/About.astro";
+
+const locale = "id";
+---
+
+<BaseLayout
+  locale={locale}
+  title="Tentang — Rahmat Hidayat"
+  description="Pelajari tentang Rahmat Hidayat, Full-Stack Developer yang mengkhususkan diri di Laravel dan Vue.js."
+  activePage="about"
+>
+  <About locale={locale} />
+</BaseLayout>

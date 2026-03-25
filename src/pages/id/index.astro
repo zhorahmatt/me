@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import Services from "../../components/Services.astro";
+
+const locale = "id";
+---
+
+<BaseLayout
+  locale={locale}
+  title="Rahmat Hidayat — Software Engineer"
+  description="Software Engineer dan Full-Stack Developer berbasis di Indonesia. Membangun sistem web yang andal untuk pemerintah dan enterprise."
+  activePage="home"
+>
+  <Hero locale={locale} />
+  <Services locale={locale} />
+</BaseLayout>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Projects from "../../components/Projects.astro";
+
+const locale = "en";
+---
+
+<BaseLayout
+  locale={locale}
+  title="Work — Rahmat Hidayat"
+  description="Selected work from government systems, enterprise tools, and personal experiments."
+  activePage="work"
+>
+  <Projects locale={locale} />
+</BaseLayout>

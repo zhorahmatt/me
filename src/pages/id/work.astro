@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Projects from "../../components/Projects.astro";
+
+const locale = "id";
+---
+
+<BaseLayout
+  locale={locale}
+  title="Karya — Rahmat Hidayat"
+  description="Karya terpilih dari sistem pemerintah, alat enterprise, dan eksperimen pribadi."
+  activePage="work"
+>
+  <Projects locale={locale} />
+</BaseLayout>

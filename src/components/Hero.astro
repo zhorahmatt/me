@@ -1,0 +1,68 @@
+---
+import type { Locale } from "../i18n/utils";
+import { t, localePath } from "../i18n/utils";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<section class="py-12 md:py-20">
+  <!-- Avatar & Heading Container -->
+  <div
+    class="flex flex-row items-start justify-start gap-5 sm:gap-6 md:gap-8 mb-10"
+  >
+    <div class="reveal shrink-0">
+      <div
+        class="w-[80px] h-[80px] sm:w-[106px] sm:h-[106px] md:w-[132px] md:h-[132px] lg:w-[140px] lg:h-[140px] rounded-[16px] md:rounded-[24px] overflow-hidden bg-[#eec85a] shadow-inner mt-1 md:mt-2"
+      >
+        <img
+          src="/avatar.png"
+          alt="Rahmat Hidayat pixel art avatar"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </div>
+    <h1
+      class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[64px] leading-[1.1] tracking-tight reveal m-0 text-ink"
+    >
+      <span class="whitespace-nowrap"
+        >{locale === "en" ? "The home for" : "Rumah dari"}</span
+      >
+      <br />
+      <span class="whitespace-nowrap"
+        >{locale === "en" ? "Rahmat's creations." : "karya Rahmat."}<span
+          class="text-border ml-1 animate-pulse font-sans font-light">|</span
+        ></span
+      >
+    </h1>
+  </div>
+
+  <!-- Intro text -->
+  <div class="max-w-[768px] space-y-5 mb-10 reveal reveal-delay-2">
+    <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed font-medium">
+      {t("hero.intro", locale)}
+    </p>
+    <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed">
+      {
+        locale === "en"
+          ? "With years of experience building full-stack web applications, I specialize in turning complex requirements into clean, maintainable systems. My work spans government platforms, enterprise tools, and modern web applications."
+          : "Dengan pengalaman bertahun-tahun membangun aplikasi web full-stack, saya mengkhususkan diri dalam mengubah kebutuhan kompleks menjadi sistem yang bersih dan terkelola. Pekerjaan saya mencakup platform pemerintah, alat enterprise, dan aplikasi web modern."
+      }
+    </p>
+  </div>
+
+  <!-- Links -->
+  <div
+    class="flex flex-col sm:flex-row items-start gap-4 reveal reveal-delay-3"
+  >
+    <a
+      href={localePath("/about", locale)}
+      class="flex items-center gap-1.5 text-ink font-medium border-b border-ink/40 hover:border-ink pb-0.5 transition-colors"
+    >
+      {locale === "en" ? "Learn more about me" : "Lebih lanjut tentang saya"}
+    </a>
+  </div>
+</section>
