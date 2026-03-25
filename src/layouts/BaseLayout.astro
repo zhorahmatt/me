@@ -9,15 +9,40 @@ interface Props {
   activePage?: string;
 }
 
-const { locale, title = "Rahmat Hidayat", description = "", activePage = "home" } = Astro.props;
+const {
+  locale,
+  title = "Rahmat Hidayat",
+  description = "",
+  activePage = "home",
+} = Astro.props;
 const altLocale = getAlternateLocale(locale);
 
 const navItems = [
   { id: "home", href: localePath("/", locale), icon: "home", label: "Home" },
-  { id: "about", href: localePath("/about", locale), icon: "heart", label: t("nav.about", locale) },
-  { id: "work", href: localePath("/work", locale), icon: "cog", label: t("nav.projects", locale) },
-  { id: "blog", href: localePath("/blog", locale), icon: "bell", label: "Blog" },
-  { id: "contact", href: localePath("/contact", locale), icon: "phone", label: t("nav.contact", locale) },
+  {
+    id: "about",
+    href: localePath("/about", locale),
+    icon: "heart",
+    label: t("nav.about", locale),
+  },
+  {
+    id: "work",
+    href: localePath("/work", locale),
+    icon: "cog",
+    label: t("nav.projects", locale),
+  },
+  {
+    id: "blog",
+    href: localePath("/blog", locale),
+    icon: "bell",
+    label: "Blog",
+  },
+  {
+    id: "contact",
+    href: localePath("/contact", locale),
+    icon: "phone",
+    label: t("nav.contact", locale),
+  },
 ];
 ---
 
@@ -38,41 +63,163 @@ const navItems = [
       @import "../styles/global.css";
     </style>
   </head>
-  <body class="min-h-screen bg-paper text-ink font-sans antialiased selection:bg-ink selection:text-paper overscroll-none">
-    
+  <body
+    class="min-h-screen bg-paper text-ink font-sans antialiased selection:bg-ink selection:text-paper overscroll-none"
+  >
     <!-- Floating Island Navigation -->
-    <div class="fixed top-4 left-1/2 -translate-x-1/2 md:top-1/2 md:left-20 md:-translate-y-1/2 md:translate-x-0 z-50 flex flex-row md:flex-col items-center gap-1.5 md:gap-2 px-2 py-2 md:px-2 md:py-3 bg-paper/80 backdrop-blur-md border border-border/60 shadow-[0_4px_12px_rgba(0,0,0,0.05)] rounded-full transition-all">
-      {navItems.map((item) => (
-        <a
-          href={item.href}
-          class:list={[
-            "group relative flex items-center justify-center w-12 h-12 rounded-full text-ink-muted hover:text-ink hover:bg-black/5 transition-colors",
-            { "bg-black/5 text-ink": activePage === item.id }
-          ]}
-          aria-label={item.label}
-        >
-          {item.icon === "home" && (
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          )}
-          {item.icon === "heart" && (
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          )}
-          {item.icon === "cog" && (
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-          )}
-          {item.icon === "bell" && (
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20l-6.5-4L7 22V7a5 5 0 015-5h1.5"/></svg>
-          )}
-          {item.icon === "phone" && (
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          )}
-          <span class="absolute left-full ml-4 px-3 py-1.5 bg-ink text-paper text-sm font-medium rounded-md opacity-0 pointer-events-none -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-[0_4px_12px_rgba(0,0,0,0.1)] hidden md:block">
-            {item.label}
-          </span>
-        </a>
-      ))}
-      <div class="w-[1px] h-8 md:w-8 md:h-[1px] bg-border/80 mx-1 md:mx-0 md:my-1"></div>
-      <a 
+    <div
+      class="fixed top-4 left-1/2 -translate-x-1/2 md:top-1/2 md:left-20 md:-translate-y-1/2 md:translate-x-0 z-50 flex flex-row md:flex-col items-center gap-1.5 md:gap-2 px-2 py-2 md:px-2 md:py-3 bg-paper/80 backdrop-blur-md border border-border/60 shadow-[0_4px_12px_rgba(0,0,0,0.05)] rounded-full transition-all"
+    >
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "group relative flex items-center justify-center w-12 h-12 rounded-full text-ink-muted hover:text-ink hover:bg-black/5 transition-colors",
+              { "bg-black/5 text-ink": activePage === item.id },
+            ]}
+            aria-label={item.label}
+          >
+            {item.icon === "home" && (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.93359 11.3755L11.9998 2.75L22.0659 11.3755"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+                <path
+                  d="M4.09277 10.1592V21.2501H19.9103V10.1592"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+                <path
+                  d="M11.9998 12.7048L11.9998 16.1132"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+              </svg>
+            )}
+            {item.icon === "heart" && (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21.2499 9.63556C21.24 7.09969 19.9096 4.71489 17.2866 3.86991C15.4855 3.28869 13.5236 3.61191 12 5.79939C10.4764 3.61191 8.51447 3.28869 6.71339 3.86991C4.09014 4.71498 2.75971 7.10024 2.75008 9.63643C2.72582 14.6801 7.83662 18.5397 11.9987 20.3844L12 20.3838L12.0013 20.3844C16.1636 18.5396 21.2748 14.6797 21.2499 9.63556Z"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+              </svg>
+            )}
+            {item.icon === "cog" && (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 17.2265V14.6895"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M21.2449 5.87988V12.3799C18.7849 13.8199 15.5349 14.6899 11.9949 14.6899C8.45488 14.6899 5.21488 13.8199 2.75488 12.3799V5.87988H21.2449Z"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+                <path
+                  d="M15.5 5.61115L14.5001 3.2998H9.5001L8.5 5.61115"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+                <path
+                  d="M2.7793 15.1932L2.9683 20.7002H21.0313L21.2203 15.1932"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+              </svg>
+            )}
+            {item.icon === "bell" && (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.4418 9.22907H8.37207"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M10.6881 13.3932H8.37207"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="3.62695"
+                  y="2.75"
+                  width="16.7465"
+                  height="18.5"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+              </svg>
+            )}
+            {item.icon === "phone" && (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.8167 21.2377C8.66748 21.6565 1.85415 11.2831 2.80077 6.22175C3.66931 4.7293 4.78257 3.62391 6.27252 2.75L9.51304 7.20123L7.86965 10.0553C7.86965 10.0553 8.32344 11.9607 10.0314 13.6686C11.824 15.4612 13.8236 16.0093 13.8236 16.0093L16.6777 14.3659L21.2885 17.7659C20.4307 19.2985 19.3492 20.3799 17.8167 21.2377Z"
+                  stroke="black"
+                  stroke-width="1.5"
+                  stroke-linecap="square"
+                />
+              </svg>
+            )}
+            <span class="absolute left-full ml-4 px-3 py-1.5 bg-ink text-paper text-sm font-medium rounded-md opacity-0 pointer-events-none -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-[0_4px_12px_rgba(0,0,0,0.1)] hidden md:block">
+              {item.label}
+            </span>
+          </a>
+        ))
+      }
+      <div
+        class="w-[1px] h-8 md:w-8 md:h-[1px] bg-border/80 mx-1 md:mx-0 md:my-1"
+      >
+      </div>
+      <!-- <a 
         href={localePath("/", altLocale)} 
         class="group relative flex items-center justify-center w-12 h-12 rounded-full text-ink-muted hover:text-ink hover:bg-black/5 transition-colors font-mono text-[13px] font-bold tracking-wider" 
         aria-label={`Switch to ${altLocale.toUpperCase()}`}
@@ -81,11 +228,36 @@ const navItems = [
         <span class="absolute left-full ml-4 px-3 py-1.5 bg-ink text-paper font-sans text-sm font-medium rounded-md opacity-0 pointer-events-none -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-[0_4px_12px_rgba(0,0,0,0.1)] hidden md:block tracking-normal">
           Switch to {altLocale.toUpperCase()}
         </span>
-      </a>
+      </a> -->
       <!-- Theme toggle placeholder (Sun/Moon) -->
-      <button class="group relative flex items-center justify-center w-12 h-12 rounded-full text-ink-muted hover:text-ink hover:bg-black/5 transition-colors" aria-label="Toggle Theme">
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <span class="absolute left-full ml-4 px-3 py-1.5 bg-ink text-paper text-sm font-medium rounded-md opacity-0 pointer-events-none -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-[0_4px_12px_rgba(0,0,0,0.1)] hidden md:block">
+      <button
+        class="group relative flex items-center justify-center w-12 h-12 rounded-full text-ink-muted hover:text-ink hover:bg-black/5 transition-colors"
+        aria-label="Toggle Theme"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M15.0076 13.7221C15.0076 15.4681 13.5916 16.8831 11.8456 16.8831C10.0996 16.8831 8.68457 15.4681 8.68457 13.7221C8.68457 11.9751 10.0996 10.5601 11.8456 10.5601C13.5916 10.5601 15.0076 11.9751 15.0076 13.7221Z"
+            stroke="black"
+            stroke-width="1.5"
+            stroke-linecap="square"></path>
+          <path
+            d="M21.0967 13.7213C19.1357 9.59319 15.6527 7.1167 11.8447 7.1167H11.8487C8.04068 7.1167 4.55768 9.59319 2.59668 13.7213"
+            stroke="black"
+            stroke-width="1.5"
+            stroke-linecap="square"></path>
+        </svg>
+
+        <span
+          class="absolute left-full ml-4 px-3 py-1.5 bg-ink text-paper text-sm font-medium rounded-md opacity-0 pointer-events-none -translate-x-2 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-[0_4px_12px_rgba(0,0,0,0.1)] hidden md:block"
+        >
           Toggle Theme
         </span>
       </button>
@@ -101,12 +273,27 @@ const navItems = [
     <!-- Footer -->
     <footer class="page-wrapper mt-20">
       <div class="page-content border-t border-border py-8">
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-ink-muted">
+        <div
+          class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-ink-muted"
+        >
           <span>© 2026 Rahmat Hidayat</span>
           <div class="flex gap-5">
-            <a href="https://github.com/rahmathidayat" target="_blank" rel="noopener" class="hover:text-ink transition-colors">GitHub</a>
-            <a href="https://linkedin.com/in/rahmathidayat" target="_blank" rel="noopener" class="hover:text-ink transition-colors">LinkedIn</a>
-            <a href="mailto:hello@rahmathidayat.my.id" class="hover:text-ink transition-colors">Email</a>
+            <a
+              href="https://github.com/rahmathidayat"
+              target="_blank"
+              rel="noopener"
+              class="hover:text-ink transition-colors">GitHub</a
+            >
+            <a
+              href="https://linkedin.com/in/rahmathidayat"
+              target="_blank"
+              rel="noopener"
+              class="hover:text-ink transition-colors">LinkedIn</a
+            >
+            <a
+              href="mailto:hello@rahmathidayat.my.id"
+              class="hover:text-ink transition-colors">Email</a
+            >
           </div>
         </div>
       </div>
