@@ -32,41 +32,132 @@ const { locale } = Astro.props;
       data-line2-prefix={locale === "en" ? "Crafting " : "Rumah dari "}
     >
       <span class="whitespace-nowrap">
-        <span id="typewriter-text"></span><span id="cursor-1" class="text-border ml-1 animate-pulse font-sans font-light">|</span>
+        <span id="typewriter-text"></span>
       </span>
       <br />
       <span class="whitespace-nowrap">
-        <span id="static-text"></span><span id="rotating-text" class="inline-block"></span><span id="cursor-2" class="text-border ml-1 font-sans font-light hidden">|</span>
+        <span id="static-text"></span><span
+          id="rotating-text"
+          class="inline-block"></span><span
+          id="cursor-2"
+          class="text-border ml-0 font-sans font-light hidden">|</span
+        >
       </span>
     </h1>
   </div>
 
   <!-- Intro text -->
   <div class="max-w-[768px] space-y-5 mb-10 reveal reveal-delay-2">
-    <p
-      class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed font-medium"
-    >
-      {t("hero.intro", locale)}
+    <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed">
+      Hello :).
     </p>
     <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed">
-      {
-        locale === "en"
-          ? "With years of experience building full-stack web applications, I specialize in turning complex requirements into clean, maintainable systems. My work spans government platforms, enterprise tools, and modern web applications."
-          : "Dengan pengalaman bertahun-tahun membangun aplikasi web full-stack, saya mengkhususkan diri dalam mengubah kebutuhan kompleks menjadi sistem yang bersih dan terkelola. Pekerjaan saya mencakup platform pemerintah, alat enterprise, dan aplikasi web modern."
-      }
+      I am <span class="font-medium underline">Rahmat Hidayat</span>. You can
+      call me
+      <span class="font-medium">Aso</span>. You can read the story behind my
+      nickname <a
+        href={localePath("/about", locale)}
+        class="text-ink font-medium border-b border-ink/40 hover:border-ink pb-0.5 transition-colors"
+        >here</a
+      > :D.
+    </p>
+    <p class="text-ink-secondary text-lg sm:text-[19px] leading-relaxed">
+      I am a full-stack web developer with years of experience building
+      full-stack web applications. I specialize in turning complex requirements
+      into clean, maintainable systems. My work spans government platforms,
+      enterprise tools, and modern web applications.
     </p>
   </div>
 
   <!-- Links -->
   <div
-    class="flex flex-col sm:flex-row items-start gap-4 reveal reveal-delay-3"
+    class="flex flex-col sm:flex-row items-center gap-4 reveal reveal-delay-3"
   >
-    <a
-      href={localePath("/about", locale)}
-      class="flex items-center gap-1.5 text-ink font-medium border-b border-ink/40 hover:border-ink pb-0.5 transition-colors"
-    >
-      {locale === "en" ? "Learn more about me" : "Lebih lanjut tentang saya"}
-    </a>
+    <p class="text-ink font-medium">
+      {locale === "en" ? "Let's connect:" : "Mari terhubung:"}
+    </p>
+    <div class="flex items-center gap-5">
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+        class="text-ink-secondary hover:text-ink transition-colors"
+      >
+        <svg
+          class="w-5 h-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path
+            d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line
+            x1="17.5"
+            y1="6.5"
+            x2="17.51"
+            y2="6.5"></line></svg
+        >
+      </a>
+      <a
+        href="https://threads.net"
+        target="_blank"
+        rel="noopener"
+        aria-label="Threads"
+        class="text-ink-secondary hover:text-ink transition-colors"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"
+          ><path
+            d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"
+          ></path></svg
+        >
+      </a>
+      <a
+        href="https://linkedin.com/in/rahmathidayat"
+        target="_blank"
+        rel="noopener"
+        aria-label="LinkedIn"
+        class="text-ink-secondary hover:text-ink transition-colors"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"
+          ><path
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+          ></path></svg
+        >
+      </a>
+      <a
+        href="https://x.com"
+        target="_blank"
+        rel="noopener"
+        aria-label="X (Twitter)"
+        class="text-ink-secondary hover:text-ink transition-colors"
+      >
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"
+          ><path
+            d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"
+          ></path></svg
+        >
+      </a>
+      <a
+        href="tel:+"
+        aria-label="Phone"
+        class="text-ink-secondary hover:text-ink transition-colors"
+      >
+        <svg
+          class="w-5 h-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+          ></path></svg
+        >
+      </a>
+    </div>
   </div>
 </section>
 
@@ -80,11 +171,16 @@ const { locale } = Astro.props;
 
   const line1Text = heading?.dataset.line1 || "Welcome to my Space.";
   const line2Prefix = heading?.dataset.line2Prefix || "Crafting ";
-  const phrases = ["Reliable Code", "Marketing Growth", "with Intent"];
+  const phrases = ["Reliable Code.", "Marketing Growth.", "with Intent."];
   let currentIndex = 0;
   let isAnimating = false;
 
-  function typeTextGeneric(el: HTMLElement | null, text: string, speed: number, callback?: () => void) {
+  function typeTextGeneric(
+    el: HTMLElement | null,
+    text: string,
+    speed: number,
+    callback?: () => void,
+  ) {
     if (!el) return;
     let idx = 0;
     function typeNext() {
@@ -99,7 +195,11 @@ const { locale } = Astro.props;
     typeNext();
   }
 
-  function eraseTextGeneric(el: HTMLElement | null, speed: number, callback: () => void) {
+  function eraseTextGeneric(
+    el: HTMLElement | null,
+    speed: number,
+    callback: () => void,
+  ) {
     if (!el) return;
     const current = el.textContent || "";
     if (current.length === 0) {
@@ -123,7 +223,7 @@ const { locale } = Astro.props;
         cursor2.classList.remove("hidden");
         cursor2.classList.add("animate-pulse");
       }
-      
+
       // 3. Type static prefix on line 2
       typeTextGeneric(staticEl, line2Prefix, 70, () => {
         // 4. Type the first rotating phrase

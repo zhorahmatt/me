@@ -4,22 +4,19 @@
   "nav.services": "Services",
   "nav.resume": "Resume",
   "nav.contact": "Contact",
-
   "hero.tagline": "Software Engineer · Full-Stack Developer",
-  "hero.intro": "I build reliable web systems for government and enterprise. Currently based in Indonesia, crafting solutions with Laravel and Vue.js.",
+  "hero.intro": "Hello :). I am Rahmat Hidayat. I build reliable web systems for government and enterprise. Currently based in Indonesia, crafting solutions with Laravel and Vue.js.",
+  "hero.description": "Hello :). I am Rahmat Hidayat. I build reliable web systems for government and enterprise. Currently based in Indonesia, crafting solutions with Laravel and Vue.js.",
   "hero.scroll": "Scroll to explore",
-
   "about.title": "About",
   "about.location": "Indonesia",
   "about.p1": "I'm Rahmat Hidayat — a software engineer who believes that good software is invisible. It just works, reliably, at scale, without getting in the way.",
   "about.p2": "With years of experience building full-stack web applications, I specialize in turning complex requirements into clean, maintainable systems. My work spans government platforms, enterprise tools, and modern web applications.",
   "about.p3": "When I'm not writing code, I'm thinking about architecture, exploring new technologies, or contributing to the developer community.",
-
   "projects.title": "Projects",
   "projects.subtitle": "Selected work from government systems, enterprise tools, and personal experiments.",
   "projects.viewProject": "View project",
   "projects.viewAll": "View all projects",
-
   "services.title": "Services",
   "services.subtitle": "I help organizations build and improve their digital systems.",
   "services.fullstack.title": "Full-Stack Development",
@@ -30,17 +27,14 @@
   "services.consultation.desc": "Code review, performance audits, and technical strategy for existing applications. Identifying bottlenecks and modernization paths.",
   "services.legacy.title": "Legacy Modernization",
   "services.legacy.desc": "Migrating and modernizing legacy systems incrementally. Strangler pattern adoption, framework upgrades, and dependency management.",
-
   "resume.title": "Resume",
   "resume.download": "Download PDF",
   "resume.experience": "Experience",
   "resume.education": "Education",
-
   "contact.title": "Let's work together",
   "contact.subtitle": "Have a project in mind, or just want to say hello? Reach out.",
   "contact.email": "Email",
   "contact.social": "Find me online",
-
   "footer.built": "Built with Astro",
   "footer.rights": "All rights reserved."
 }
