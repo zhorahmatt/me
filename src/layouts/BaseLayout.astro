@@ -2,6 +2,7 @@
 import type { Locale } from "../i18n/utils";
 import { t, getAlternateLocale, localePath } from "../i18n/utils";
 import Analytics from "@vercel/analytics/astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   locale: Locale;
@@ -50,7 +51,6 @@ const navItems = [
 <!doctype html>
 <html lang={locale}>
   <head>
-    <Analytics />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
@@ -64,6 +64,8 @@ const navItems = [
     <style is:global>
       @import "../styles/global.css";
     </style>
+    <Analytics />
+    <SpeedInsights />
   </head>
   <body
     class="min-h-screen bg-paper text-ink font-sans antialiased selection:bg-ink selection:text-paper overscroll-none"
