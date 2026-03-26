@@ -1,5 +1,6 @@
 ---
-import type { Locale } from '../i18n/utils';
+import type { Locale } from "../i18n/utils";
+import { localePath } from "../i18n/utils";
 
 interface Props {
   locale: Locale;
@@ -9,62 +10,206 @@ const { locale } = Astro.props;
 
 const posts = [
   {
-    title: locale === 'en' ? 'Building Performance Trees with Vue.js' : 'Membangun Pohon Kinerja dengan Vue.js',
-    excerpt: locale === 'en'
-      ? 'How I built an interactive tree visualization for government performance data.'
-      : 'Bagaimana saya membangun visualisasi tree interaktif untuk data kinerja pemerintah.',
-    date: '2024-02-15',
-    category: 'Engineering',
+    title:
+      locale === "en"
+        ? "Building Performance Trees with Vue.js"
+        : "Membangun Pohon Kinerja dengan Vue.js",
+    excerpt:
+      locale === "en"
+        ? "How I built an interactive tree visualization for government performance data using Vue.js and D3."
+        : "Bagaimana saya membangun visualisasi tree interaktif untuk data kinerja pemerintah menggunakan Vue.js dan D3.",
+    date: "2024-02-15",
+    category: "Engineering",
+    image: "/blog/cover-code.png",
   },
   {
-    title: locale === 'en' ? 'Scaling Laravel for 30+ SKPD Reports' : 'Scaling Laravel untuk 30+ Laporan SKPD',
-    excerpt: locale === 'en'
-      ? 'Lessons learned from building an automated report generation system.'
-      : 'Pelajaran dari membangun sistem pembuatan laporan otomatis.',
-    date: '2024-01-20',
-    category: 'Backend',
+    title:
+      locale === "en"
+        ? "Scaling Laravel for 30+ SKPD Reports"
+        : "Scaling Laravel untuk 30+ Laporan SKPD",
+    excerpt:
+      locale === "en"
+        ? "Lessons learned from building an automated report generation system that handles thousands of pages."
+        : "Pelajaran dari membangun sistem pembuatan laporan otomatis yang menangani ribuan halaman.",
+    date: "2024-01-20",
+    category: "Backend",
+    image: "/blog/cover-architecture.png",
   },
   {
-    title: locale === 'en' ? 'From CRA to Astro: A Migration Story' : 'Dari CRA ke Astro: Cerita Migrasi',
-    excerpt: locale === 'en'
-      ? 'Why I chose Astro for my personal site and the migration process.'
-      : 'Mengapa saya memilih Astro untuk situs pribadi dan proses migrasinya.',
-    date: '2023-12-10',
-    category: 'Frontend',
+    title:
+      locale === "en"
+        ? "From CRA to Astro: A Migration Story"
+        : "Dari CRA ke Astro: Cerita Migrasi",
+    excerpt:
+      locale === "en"
+        ? "Why I chose Astro for my personal site and the migration process from Create React App."
+        : "Mengapa saya memilih Astro untuk situs pribadi dan proses migrasinya dari Create React App.",
+    date: "2023-12-10",
+    category: "Frontend",
+    image: "/blog/cover-tools.png",
+  },
+  {
+    title:
+      locale === "en"
+        ? "Designing Cascading Data Flows"
+        : "Mendesain Alur Data Berjenjang",
+    excerpt:
+      locale === "en"
+        ? "A deep dive into how cascading organizational structures map to interactive UI components."
+        : "Pendalaman tentang bagaimana struktur organisasi berjenjang dipetakan ke komponen UI interaktif.",
+    date: "2023-11-05",
+    category: "Architecture",
+    image: "/blog/cover-data.png",
+  },
+  {
+    title:
+      locale === "en"
+        ? "Weekend in Toraja: A Photo Essay"
+        : "Akhir Pekan di Toraja: Esai Foto",
+    excerpt:
+      locale === "en"
+        ? "Capturing the beauty of Tana Toraja — its landscapes, culture, and unforgettable coffee."
+        : "Menangkap keindahan Tana Toraja — lanskapnya, budayanya, dan kopinya yang tak terlupakan.",
+    date: "2023-10-22",
+    category: "Travel",
+    image: "/blog/cover-travel.png",
+  },
+  {
+    title:
+      locale === "en"
+        ? "My Developer Toolbox in 2024"
+        : "Toolbox Developer Saya di 2024",
+    excerpt:
+      locale === "en"
+        ? "The editors, terminals, extensions, and workflows that keep me productive every day."
+        : "Editor, terminal, ekstensi, dan alur kerja yang membuat saya produktif setiap hari.",
+    date: "2023-09-18",
+    category: "Tooling",
+    image: "/blog/cover-tools.png",
+  },
+  {
+    title:
+      locale === "en"
+        ? "State Management Patterns in Vue 3"
+        : "Pola State Management di Vue 3",
+    excerpt:
+      locale === "en"
+        ? "Comparing Pinia, composables, and provide/inject for managing complex application state."
+        : "Membandingkan Pinia, composables, dan provide/inject untuk mengelola state aplikasi yang kompleks.",
+    date: "2023-08-14",
+    category: "Frontend",
+    image: "/blog/cover-code.png",
+  },
+  {
+    title:
+      locale === "en"
+        ? "Building PDF Exports That Don't Break"
+        : "Membuat Ekspor PDF yang Tidak Error",
+    excerpt:
+      locale === "en"
+        ? "Handling dynamic tables, page breaks, and multi-language content in automated PDF generation."
+        : "Menangani tabel dinamis, page break, dan konten multi-bahasa dalam pembuatan PDF otomatis.",
+    date: "2023-07-30",
+    category: "Backend",
+    image: "/blog/cover-architecture.png",
+  },
+  {
+    title:
+      locale === "en"
+        ? "Visualizing Government KPIs"
+        : "Memvisualisasikan KPI Pemerintah",
+    excerpt:
+      locale === "en"
+        ? "How interactive dashboards can transform how government agencies track and improve performance."
+        : "Bagaimana dashboard interaktif dapat mengubah cara instansi pemerintah melacak dan meningkatkan kinerja.",
+    date: "2023-06-12",
+    category: "Data Viz",
+    image: "/blog/cover-data.png",
+  },
+  {
+    title:
+      locale === "en"
+        ? "Exploring Makassar's Hidden Gems"
+        : "Menjelajahi Permata Tersembunyi Makassar",
+    excerpt:
+      locale === "en"
+        ? "A local's guide to the best street food, sunsets, and weekend escapes in Makassar."
+        : "Panduan lokal untuk jajanan kaki lima terbaik, sunset, dan liburan akhir pekan di Makassar.",
+    date: "2023-05-08",
+    category: "Travel",
+    image: "/blog/cover-travel.png",
   },
 ];
 
 function formatDate(dateStr: string, loc: string) {
-  return new Date(dateStr).toLocaleDateString(loc === 'id' ? 'id-ID' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  return new Date(dateStr).toLocaleDateString(
+    loc === "id" ? "id-ID" : "en-US",
+    {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    },
+  );
 }
 ---
 
-<section class="py-12 md:py-20">
-  <h1 class="font-serif text-hero mb-4 reveal">Blog.</h1>
-  <p class="text-ink-secondary text-lg sm:text-[19px] max-w-[768px] mb-12 reveal reveal-delay-1">
-    {locale === 'en'
-      ? 'Thoughts on engineering, architecture, and building things that last.'
-      : 'Pemikiran tentang engineering, arsitektur, dan membangun hal yang bertahan lama.'
+<section class="py-16 pt-2 pb-0 reveal">
+  <h2 class="font-serif text-section mb-3">
+    {locale === "en" ? "Stories." : "Cerita."}
+  </h2>
+  <p
+    class="text-ink-secondary text-base sm:text-lg max-w-[600px] mb-10 reveal reveal-delay-1"
+  >
+    {
+      locale === "en"
+        ? "Thoughts on engineering, travel, and building things that last."
+        : "Pemikiran tentang engineering, perjalanan, dan membangun hal yang bertahan lama."
     }
   </p>
 
-  <div class="space-y-6">
-    {posts.map((post, i) => (
-      <a href="#" class={`block card p-6 group reveal reveal-delay-${i + 1}`}>
-        <div class="flex items-center gap-3 mb-2">
-          <span class="text-xs font-mono text-ink-muted uppercase tracking-wider">{post.category}</span>
-          <span class="text-xs text-ink-light">·</span>
-          <span class="text-xs text-ink-muted">{formatDate(post.date, locale)}</span>
-        </div>
-        <h2 class="font-serif text-xl md:text-2xl text-ink mb-2 group-hover:text-accent transition-colors">
-          {post.title}
-        </h2>
-        <p class="text-base text-ink-secondary leading-relaxed">{post.excerpt}</p>
-      </a>
-    ))}
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {
+      posts.map((post, i) => (
+        <a
+          href="#"
+          class={`block card overflow-hidden group reveal reveal-delay-${(i % 4) + 1}`}
+        >
+          <div class="aspect-[16/9] overflow-hidden bg-black/5">
+            <img
+              src={post.image}
+              alt={post.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-xs font-mono text-ink-muted uppercase tracking-wider">
+                {post.category}
+              </span>
+              <span class="text-xs text-ink-light">·</span>
+              <span class="text-xs text-ink-muted">
+                {formatDate(post.date, locale)}
+              </span>
+            </div>
+            <h3 class="font-serif text-xl text-ink mb-2 group-hover:text-accent transition-colors leading-snug">
+              {post.title}
+            </h3>
+            <p class="text-sm text-ink-secondary leading-relaxed line-clamp-2">
+              {post.excerpt}
+            </p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="mt-10 text-center">
+    <a
+      href={localePath("/blog", locale)}
+      class="link-underline text-sm text-ink-secondary"
+    >
+      {locale === "en" ? "View all stories →" : "Lihat semua cerita →"}
+    </a>
   </div>
 </section>

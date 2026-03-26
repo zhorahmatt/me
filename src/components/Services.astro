@@ -1,6 +1,6 @@
 ---
-import type { Locale } from '../i18n/utils';
-import { localePath } from '../i18n/utils';
+import type { Locale } from "../i18n/utils";
+import { localePath } from "../i18n/utils";
 
 interface Props {
   locale: Locale;
@@ -10,70 +10,99 @@ const { locale } = Astro.props;
 
 const ventures = [
   {
-    name: 'E-Kinerja',
-    year: '2023',
-    desc: locale === 'en' ? 'Government performance management system' : 'Sistem manajemen kinerja pemerintah',
-    color: 'bg-blue-100',
-    emoji: '📊',
+    name: "E-Kinerja",
+    year: "2023",
+    desc:
+      locale === "en"
+        ? "Government performance management system"
+        : "Sistem manajemen kinerja pemerintah",
+    color: "bg-blue-100",
+    emoji: "📊",
   },
   {
-    name: 'Pohon Kinerja',
-    year: '2023',
-    desc: locale === 'en' ? 'Interactive performance tree visualization' : 'Visualisasi pohon kinerja interaktif',
-    color: 'bg-green-100',
-    emoji: '🌳',
+    name: "Pohon Kinerja",
+    year: "2023",
+    desc:
+      locale === "en"
+        ? "Interactive performance tree visualization"
+        : "Visualisasi pohon kinerja interaktif",
+    color: "bg-green-100",
+    emoji: "🌳",
   },
   {
-    name: 'Renstra Module',
-    year: '2022',
-    desc: locale === 'en' ? 'Strategic planning module' : 'Modul perencanaan strategis',
-    color: 'bg-purple-100',
-    emoji: '📋',
+    name: "Renstra Module",
+    year: "2022",
+    desc:
+      locale === "en"
+        ? "Strategic planning module"
+        : "Modul perencanaan strategis",
+    color: "bg-purple-100",
+    emoji: "📋",
   },
   {
-    name: 'Cascading View',
-    year: '2022',
-    desc: locale === 'en' ? 'Organizational structure visualization' : 'Visualisasi struktur organisasi',
-    color: 'bg-orange-100',
-    emoji: '🔗',
+    name: "Cascading View",
+    year: "2022",
+    desc:
+      locale === "en"
+        ? "Organizational structure visualization"
+        : "Visualisasi struktur organisasi",
+    color: "bg-orange-100",
+    emoji: "🔗",
   },
   {
-    name: 'Report Generator',
-    year: '2023',
-    desc: locale === 'en' ? 'Automated batch PDF export' : 'Ekspor PDF batch otomatis',
-    color: 'bg-red-100',
-    emoji: '📄',
+    name: "Report Generator",
+    year: "2023",
+    desc:
+      locale === "en"
+        ? "Automated batch PDF export"
+        : "Ekspor PDF batch otomatis",
+    color: "bg-red-100",
+    emoji: "📄",
   },
   {
-    name: 'rahmathidayat.my.id',
-    year: '2024',
-    desc: locale === 'en' ? 'This personal site — Astro SSG' : 'Situs pribadi ini — Astro SSG',
-    color: 'bg-indigo-100',
-    emoji: '🌐',
+    name: "rahmathidayat.my.id",
+    year: "2024",
+    desc:
+      locale === "en"
+        ? "This personal site — Astro SSG"
+        : "Situs pribadi ini — Astro SSG",
+    color: "bg-indigo-100",
+    emoji: "🌐",
   },
 ];
 ---
 
-<section class="py-16 reveal">
+<section class="py-16 pt-0 reveal">
   <h2 class="font-serif text-section mb-8">
-    {locale === 'en' ? 'My Ventures.' : 'Proyek Saya.'}
+    {locale === "en" ? "My Ventures." : "Proyek Saya."}
   </h2>
 
   <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-    {ventures.map((v, i) => (
-      <div class={`card p-6 flex flex-col items-center text-center reveal reveal-delay-${i + 1}`}>
-        <div class={`w-16 h-16 ${v.color} rounded-2xl flex items-center justify-center text-2xl mb-4`}>
-          {v.emoji}
+    {
+      ventures.map((v, i) => (
+        <div
+          class={`card p-6 flex flex-col items-center text-center reveal reveal-delay-${i + 1}`}
+        >
+          <div
+            class={`w-16 h-16 ${v.color} rounded-2xl flex items-center justify-center text-2xl mb-4`}
+          >
+            {v.emoji}
+          </div>
+          <h3 class="font-sans font-semibold text-base text-ink mb-1">
+            {v.name}
+          </h3>
+          <span class="text-xs text-ink-muted font-mono">{v.year}</span>
         </div>
-        <h3 class="font-sans font-semibold text-base text-ink mb-1">{v.name}</h3>
-        <span class="text-xs text-ink-muted font-mono">{v.year}</span>
-      </div>
-    ))}
+      ))
+    }
   </div>
 
   <div class="mt-8 text-center">
-    <a href={localePath('/work', locale)} class="link-underline text-sm text-ink-secondary">
-      {locale === 'en' ? 'View all work →' : 'Lihat semua karya →'}
+    <a
+      href={localePath("/work", locale)}
+      class="link-underline text-sm text-ink-secondary"
+    >
+      {locale === "en" ? "View all work →" : "Lihat semua karya →"}
     </a>
   </div>
 </section>
